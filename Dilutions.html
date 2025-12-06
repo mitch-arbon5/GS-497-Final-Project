@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="Website Project.css">
+            <title>Chemistry Equations</title>
+
+        </head>
+        <header>
+            <div class="content" id="title">
+                <h1>Chemistry Resources - GS 497</h1>
+            </div>
+        </header>
+
+        <div class="navbar">
+            <a href="Website Project.html">Home</a>
+            <div class="dropdown">
+                <button class="dropButton">General Chemistry 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Temperature Converter.html">Temperature Converter</a>
+                    <a href="Dilutions.html">Dilutions</a>
+                    <a href="Absorbance.html">Absorbance</a>
+                    <a href="Molarity.html">Molarity</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropButton">Acid-Base 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="pH Conversion.html">pH Conversion</a>
+                </div>
+            </div> 
+            <div class="dropdown">
+                <button class="dropButton">Gas Laws 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Boyle's Law.html">Boyle's Law</a>
+                    <a href="Charle's Law.html">Charle's Law</a>
+                    <a href="Ideal Gas Law.html">Ideal Gas Law</a>
+                </div>
+            </div> 
+            <div class="dropdown">
+                <button class="dropButton">Analytical Chemistry 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Buoyancy Correction.html">Buoyancy Correction</a>
+                    <a href="Percent Error.html">Percent Error</a>
+                </div>
+            </div> 
+        </div>
+
+        <div>
+            <h2 class="calculationHeader" id="absorbanceLabel">Dilutions
+                <div class="toolTip">&#9432;
+                    <span class="toolTipText">Fill three of the boxes to find the missing variable.</span>
+                </div>
+            </h2>
+            <div class="calculationContent">
+                    <div class="rowInfo">
+                        <label class="column columnLeft equationToolTip">Initial Concentration [M<sub>i</sub>]
+                            <span class="equationToolTipText">
+                                <p>[M<sub>i</sub>] = <sup>([M<sub>f</sub>][V<sub>f</sub>])</sup>/<sub>[V<sub>i</sub>]</sub></p>
+                            </span>
+                        </label>
+                        <input class="column columnMiddle" id="inputInitialConcentration" type="number" placeholder="0">
+                        <label class="column columnRight">M</label>
+                    </div>
+                    <div class="rowInfo">
+                        <label class="column columnLeft equationToolTip">Initial Volume [V<sub>i</sub>]
+                            <span class="equationToolTipText">
+                                <p>[V<sub>i</sub>] = <sup>([M<sub>f</sub>][V<sub>f</sub>])</sup>/<sub>[M<sub>i</sub>]</sub></p>
+                            </span>
+                        </label>
+                        <input class="column columnMiddle" id="inputInitialVolume" type="number" placeholder="0">
+                        <label class="column columnRight">Liters</label>
+                    </div>
+                    <div class="rowInfo">                    
+                        <label class="column columnLeft equationToolTip">Final Concentration [M<sub>f</sub>]
+                            <span class="equationToolTipText">
+                                <p>[M<sub>f</sub>] = <sup>([M<sub>i</sub>][V<sub>i</sub>])</sup>/<sub>[V<sub>f</sub>]</sub></p>
+                            </span>
+                        </label>
+                        <input class="column columnMiddle" id="inputFinalConcentration" type="number" placeholder="0">
+                        <label class="column columnRight">M</label>
+                    </div>
+                    <div class="rowInfo"> 
+                        <label class="column columnLeft equationToolTip">Final Volume [V<sub>f</sub>]
+                            <span class="equationToolTipText">
+                                <p>[V<sub>f</sub>] = <sup>([M<sub>i</sub>][V<sub>i</sub>])</sup>/<sub>[M<sub>f</sub>]</sub></p>
+                            </span>
+                        </label>
+                        <input class="column columnMiddle" id="inputFinalVolume" type="number" placeholder="0">
+                        <label class="column columnRight">Liters</label>        
+                    </div>            
+                <div class="rowInfo">
+                    <label class="column columnLeft"></label>
+                    <button class="calculateButton column columnMiddle"onclick="dilutionCalculation()">Calculate</button>
+                </div>
+                <div class="rowInfo">
+                    <label class="column columnLeft"></label>
+                    <button class="clearButton column columnMiddle"onclick="clearInputs()">Clear</button>
+                </div>
+            </div>
+                <script>
+                    function dilutionCalculation() {   
+                        
+                        // Obtain Input Values
+                        let initialConc = document.getElementById("inputInitialConcentration").value;
+                        let initialVol = document.getElementById("inputInitialVolume").value;
+                        let finalConc = document.getElementById("inputFinalConcentration").value;
+                        let finalVol = document.getElementById("inputFinalVolume").value;
+
+                        //Check for number of empty boxes
+                        let emptyFields = 0;
+
+                        if (initialConc === ''){
+                            emptyFields ++;}
+                        if (initialVol === ''){
+                            emptyFields ++;}
+                        if (finalConc === ''){
+                            emptyFields ++;}
+                        if (finalVol === ''){
+                            emptyFields ++;}
+                        if (emptyFields != 1){
+                            alert("Please leave only 1 box empty.");}
+                            else {
+                                //Check for Empty Box
+                                if (initialConc === '') {
+                                    let initialConcCalc = ((finalConc * finalVol) / initialVol).toFixed(2);
+                                    document.querySelector("#inputInitialConcentration").value = initialConcCalc;}
+                                else if (initialVol === '') {
+                                    let initialVolCalc = ((finalConc * finalVol) / initialConc).toFixed(2);
+                                    document.querySelector("#inputInitialVolume").value = initialVolCalc;}
+                                else if (finalConc === '') {
+                                    let finalConcCalc = ((initialConc *initialVol) / finalVol).toFixed(2);
+                                    document.querySelector("#inputFinalConcentration").value = finalConcCalc;}
+                                else if (finalVol === '') {
+                                    let finalVolCalc = ((initialConc *initialVol) / finalConc).toFixed(2);
+                                    document.querySelector("#inputFinalVolume").value = finalVolCalc;}}}
+
+                    function clearInputs() {
+                        document.querySelector("#inputInitialConcentration").value = '';
+                        document.querySelector("#inputInitialVolume").value = '';
+                        document.querySelector("#inputFinalConcentration").value = '';
+                        document.querySelector("#inputFinalVolume").value = '';}
+                </script>
+        </div>  
+
+    </html>

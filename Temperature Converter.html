@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="Website Project.css">
+            <title>Chemistry Equations</title>
+
+        </head>
+        <header>
+            <div class="content" id="title">
+                <h1>Chemistry Resources - GS 497</h1>
+            </div>
+        </header>
+
+        <div class="navbar">
+            <a href="Website Project.html">Home</a>
+            <div class="dropdown">
+                <button class="dropButton">General Chemistry 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Temperature Converter.html">Temperature Converter</a>
+                    <a href="Dilutions.html">Dilutions</a>
+                    <a href="Absorbance.html">Absorbance</a>
+                    <a href="Molarity.html">Molarity</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropButton">Acid-Base 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="pH Conversion.html">pH Conversion</a>
+                </div>
+            </div> 
+            <div class="dropdown">
+                <button class="dropButton">Gas Laws 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Boyle's Law.html">Boyle's Law</a>
+                    <a href="Charle's Law.html">Charle's Law</a>
+                    <a href="Ideal Gas Law.html">Ideal Gas Law</a>
+                </div>
+            </div> 
+            <div class="dropdown">
+                <button class="dropButton">Analytical Chemistry 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Buoyancy Correction.html">Buoyancy Correction</a>
+                    <a href="Percent Error.html">Percent Error</a>
+                </div>
+            </div> 
+        </div>
+
+
+        <div class="content" id="Section_Basic_Chemistry">
+            <h2 class="calculationHeader" id="buoyancyLabel">Temperature Converter  
+                <div class="toolTip">&#9432;
+                    <span class="toolTipText">Fill any box to automatically calculate the values of the two remaining temperatures. Changing any box will automatically update the correct temperatures.</span>
+                </div>
+            </h2>
+            <div class="calculationContent">
+                <div class="rowInfo">
+                    <label class="column columnLeft equationToolTip">Fahrenheit
+                        <span class="equationToolTipText">
+                                <p>Fahrenheit = (Celcius <sup>9</sup>/<sub>5</sub>) + 32</p>
+                                <p>Fahrenheit = (Kelvin - 273.15) * <sup>9</sup>/<sub>5</sub> + 32</p>
+                        </span>
+                    </label>
+                    <input class="column columnMiddle" id="inputFahrenheit" type="number" placeholder="0" oninput="temperatureConverter(this.id,this.value)" onchange="temperatureConverter(this.id,this.value)">
+                    <label class="column columnRight"><sup>o</sup>F</label>
+                </div>
+                <div class="rowInfo">
+                    <label class="column columnLeft equationToolTip" >Celcius
+                        <span class="equationToolTipText">
+                                <p>Celcius = (Fahrenheit - 32) * <sup>5</sup>/<sub>9</sub></p>
+                                <p>Celcius = Kelvin - 273.15</p>
+                        </span>
+                    </label>
+                    <input class="column columnMiddle" id="inputCelsius" type="number" placeholder="0" oninput="temperatureConverter(this.id,this.value)" onchange="temperatureConverter(this.id,this.value)">
+                    <label class="column columnRight"><sup>o</sup>C</label>
+                </div>
+                <div class="rowInfo">
+                    <label class="column columnLeft equationToolTip" >Kelvin
+                        <span class="equationToolTipText">
+                                <p>Kelvin = (Fahrenheit - 32) * <sup>5</sup>/<sub>9</sub> + 273.15</p>
+                                <p>Kelvin = Celcius + 273.15</p>
+                        </span>
+                    </label>
+                    <input class="column columnMiddle" id="inputKelvin" type="number" placeholder="0" oninput="temperatureConverter(this.id,this.value)" onchange="temperatureConverter(this.id,this.value)">                    
+                    <label class="column columnRight"> K</label>
+                </div>
+                <div class="rowInfo">
+                    <label class="column columnLeft"></label>
+                    <button class="clearButton column columnMiddle"onclick="clearInputs()">Clear</button>
+                </div>
+            </div>    
+            <script>
+                function temperatureConverter(source,valNum) {
+                    valNum = parseFloat(valNum);
+
+                    // Obtain Input Values
+                    var inputFahrenheit = document.getElementById("inputFahrenheit");
+                    var inputCelsius = document.getElementById("inputCelsius");
+                    var inputKelvin = document.getElementById("inputKelvin");
+
+                        //Perform Calculations
+                        if (source=="inputFahrenheit") {
+                            inputCelsius.value=((valNum-32)/1.8).toFixed(2);
+                            inputKelvin.value=(((valNum-32)/1.8)+273.15).toFixed(2);}
+                        if (source=="inputCelsius") {
+                            inputFahrenheit.value=((valNum*1.8)+32).toFixed(2);
+                            inputKelvin.value=((valNum)+273.15).toFixed(2);}
+                        if (source=="inputKelvin") {
+                            inputFahrenheit.value=(((valNum-273.15)*1.8)+32).toFixed(2);
+                            inputCelsius.value=((valNum)-273.15).toFixed(2);}}
+                
+                function clearInputs() {
+                        document.querySelector("#inputFahrenheit").value = '';
+                        document.querySelector("#inputCelsius").value = '';
+                        document.querySelector("#inputKelvin").value = '';}
+            </script>
+        </div>
+        
+    </html>

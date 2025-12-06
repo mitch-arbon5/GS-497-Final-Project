@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="Website Project.css">
+            <title>Chemistry Equations</title>
+
+        </head>
+        <header>
+            <div class="content" id="title">
+                <h1>Chemistry Resources - GS 497</h1>
+            </div>
+        </header>
+
+        <div class="navbar">
+            <a href="Website Project.html">Home</a>
+            <div class="dropdown">
+                <button class="dropButton">General Chemistry 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Temperature Converter.html">Temperature Converter</a>
+                    <a href="Dilutions.html">Dilutions</a>
+                    <a href="Absorbance.html">Absorbance</a>
+                    <a href="Molarity.html">Molarity</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropButton">Acid-Base 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="pH Conversion.html">pH Conversion</a>
+                </div>
+            </div> 
+            <div class="dropdown">
+                <button class="dropButton">Gas Laws 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Boyle's Law.html">Boyle's Law</a>
+                    <a href="Charle's Law.html">Charle's Law</a>
+                    <a href="Ideal Gas Law.html">Ideal Gas Law</a>
+                </div>
+            </div> 
+            <div class="dropdown">
+                <button class="dropButton">Analytical Chemistry 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Buoyancy Correction.html">Buoyancy Correction</a>
+                    <a href="Percent Error.html">Percent Error</a>
+                </div>
+            </div> 
+        </div>
+
+        <div>
+            <h2 class="calculationHeader" id="absorbanceLabel">Absorbance
+                <div class="toolTip">&#9432;
+                    <span class="toolTipText">Fill any three boxes to find the missing variable.</span>
+                </div>
+            </h2>
+            <div class="calculationContent">
+                    <div class="rowInfo">
+                        <label class="column columnLeft equationToolTip" >Absorbance (A)
+                            <span class="equationToolTipText">
+                                <p>A = &#949; * C * L</p>
+                            </span>
+                        </label>
+                        <input class="column columnMiddle" id="inputAbsorbance" type="number" placeholder="0">
+                        <label class="column columnRight"></label>
+                    </div>
+                    <div class="rowInfo">
+                        <label class="column columnLeft equationToolTip">Molar Absorptivity (&#949;)
+                            <span class="equationToolTipText">
+                                <p>&#949; = <sup>A</sup>/<sub>(C * L)</sub></p>
+                            </span>
+                        </label>
+                        <input class="column columnMiddle" id="inputMAC" type="number" placeholder="0">
+                        <label class="column columnRight">M<sup>-1</sup>cm<sup>-1</sup></label>
+                    </div>
+                    <div class="rowInfo">                    
+                        <label class="column columnLeft equationToolTip">Concentration (C)
+                            <span class="equationToolTipText">
+                                <p>C = <sup>A</sup>/<sub>(&#949; * L)</sub></p>
+                            </span>
+                        </label>
+                        <input class="column columnMiddle" id="inputConcentration" type="number" placeholder="0">
+                        <label class="column columnRight">M</label>
+                    </div>
+                    <div class="rowInfo"> 
+                        <label class="column columnLeft equationToolTip">Path Length (L)
+                            <span class="equationToolTipText">
+                                <p>L = <sup>A</sup>/<sub>(&#949; * C)</sub></p>
+                            </span>
+                        </label>
+                        <input class="column columnMiddle" id="inputPathLength" type="number" placeholder="0">
+                        <label class="column columnRight">cm</label>        
+                    </div>            
+                <div class="rowInfo">
+                    <label class="column columnLeft"></label>
+                    <button class="calculateButton column columnMiddle"onclick="absorbanceCalculation()">Calculate</button>
+                </div>
+                <div class="rowInfo">
+                    <label class="column columnLeft"></label>
+                    <button class="clearButton column columnMiddle"onclick="clearInputs()">Clear</button>
+                </div>
+            </div>
+                <script>
+                    function absorbanceCalculation() {   
+                        
+                        // Obtain Input Values
+                        let absorbance = document.getElementById("inputAbsorbance").value;
+                        let molarAbs = document.getElementById("inputMAC").value;
+                        let concentration = document.getElementById("inputConcentration").value;
+                        let pathLength = document.getElementById("inputPathLength").value;
+
+                        //Check for number of empty boxes
+                        let emptyFields = 0;
+
+                        if (absorbance === ''){
+                            emptyFields ++;}
+                        if (molarAbs === ''){
+                            emptyFields ++;}
+                        if (concentration === ''){
+                            emptyFields ++;}
+                        if (pathLength === ''){
+                            emptyFields ++;}
+                        if (emptyFields != 1){
+                            alert("Please leave only 1 box empty.");}
+                            else {
+                                //Check for Empty Box
+                                if (absorbance === '') {
+                                    let absCalc = (molarAbs * concentration * pathLength).toFixed(2);
+                                    document.querySelector("#inputAbsorbance").value = absCalc;}
+                                else if (molarAbs === '') {
+                                    let molarAbsCalc = ((concentration * pathLength) / absorbance).toFixed(2);
+                                    document.querySelector("#inputMAC").value = molarAbsCalc;}
+                                else if (concentration === '') {
+                                    let concCalc = ((molarAbs * pathLength) / absorbance).toFixed(2);
+                                    document.querySelector("#inputConcentration").value = concCalc;}
+                                else if (pathLength === '') {
+                                    let pathLengthCalc = ((molarAbs * concentration) / absorbance).toFixed(2);
+                                    document.querySelector("#inputPathLength").value = pathLengthCalc;}}}
+
+                    function clearInputs() {
+                        document.querySelector("#inputAbsorbance").value = '';
+                        document.querySelector("#inputMAC").value = '';
+                        document.querySelector("#inputConcentration").value = '';
+                        document.querySelector("#inputPathLength").value = '';}
+                </script>
+        </div>  
+    </html>

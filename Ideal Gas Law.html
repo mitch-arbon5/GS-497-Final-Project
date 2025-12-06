@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="Website Project.css">
+            <title>Chemistry Equations</title>
+
+        </head>
+        <header>
+            <div class="content" id="title">
+                <h1>Chemistry Resources - GS 497</h1>
+            </div>
+        </header>
+
+        <div class="navbar">
+            <a href="Website Project.html">Home</a>
+            <div class="dropdown">
+                <button class="dropButton">General Chemistry 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Temperature Converter.html">Temperature Converter</a>
+                    <a href="Dilutions.html">Dilutions</a>
+                    <a href="Absorbance.html">Absorbance</a>
+                    <a href="Molarity.html">Molarity</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropButton">Acid-Base 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="pH Conversion.html">pH Conversion</a>
+                </div>
+            </div> 
+            <div class="dropdown">
+                <button class="dropButton">Gas Laws 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Boyle's Law.html">Boyle's Law</a>
+                    <a href="Charle's Law.html">Charle's Law</a>
+                    <a href="Ideal Gas Law.html">Ideal Gas Law</a>
+                </div>
+            </div> 
+            <div class="dropdown">
+                <button class="dropButton">Analytical Chemistry 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Buoyancy Correction.html">Buoyancy Correction</a>
+                    <a href="Percent Error.html">Percent Error</a>
+                </div>
+            </div> 
+        </div>
+
+        <div>
+            <h2 class="calculationHeader" id="absorbanceLabel">Ideal Gas Law
+                <div class="toolTip">&#9432;
+                    <span class="toolTipText">Fill all but one of the boxes to find the missing variable. The Universal Gas Constant will always be a set number.</span>
+                </div>
+            </h2>
+            <div class="calculationContent">
+                    <div class="rowInfo">
+                        <label class="column columnLeft equationToolTip">Pressure (P)
+                            <span class="equationToolTipText">
+                                <p>P = <sup>(n * R * T)</sup>/<sub>V</sub></p>
+                            </span>
+                        </label>
+                        <input class="column columnMiddle" id="inputPressure" type="number" placeholder="0">
+                        <label class="column columnRight">atm</label>
+                    </div>
+                    <div class="rowInfo">
+                        <label class="column columnLeft equationToolTip">Volume (V)
+                            <span class="equationToolTipText">
+                                <p>V = <sup>(n * R * T)</sup>/<sub>P</sub></p>
+                            </span>
+                        </label>
+                        <input class="column columnMiddle" id="inputVolume" type="number" placeholder="0">
+                        <label class="column columnRight">Liters</label>
+                    </div>
+                    <div class="rowInfo">       
+                        <label class="column columnLeft equationToolTip">Number of mols (n)
+                            <span class="equationToolTipText">
+                                <p>n = <sup>(P * V)</sup>/<sub>(R * T)</sub></p>
+                            </span>
+                        </label>             
+                        <input class="column columnMiddle" id="inputMols" type="number" placeholder="0">
+                        <label class="column columnRight">mols</label>
+                    </div>
+                    <div class="rowInfo"> 
+                        <label class="column columnLeft">Universal Gas Constant (R)</label>  
+                        <input class="column columnMiddle" id="inputConstant" type="number" value="0.08206" readonly>
+                        <label class="column columnRight">L⋅atm⋅K<sup>-1</sup>⋅mol<sup>-1</sup></label>        
+                    </div>
+                    <div class="rowInfo"> 
+                        <label class="column columnLeft equationToolTip">Temperature (T)
+                            <span class="equationToolTipText">
+                                <p>T = <sup>(P * V)</sup>/<sub>(n * R)</sub></p>
+                            </span>
+                        </label> 
+                        <input class="column columnMiddle" id="inputTemp" type="number" placeholder="0">
+                        <label class="column columnRight">Kelvin</label>        
+                    </div>          
+                <div class="rowInfo">
+                    <label class="column columnLeft"></label>
+                    <button class="calculateButton column columnMiddle"onclick="buoyancyCalculation()">Calculate</button>
+                </div>
+                <div class="rowInfo">
+                    <label class="column columnLeft"></label>
+                    <button class="clearButton column columnMiddle"onclick="clearInputs()">Clear</button>
+                </div>
+            </div>
+                <script>
+                    function buoyancyCalculation() {     
+                        var pressure = document.getElementById("inputPressure").value;
+                        var volume = document.getElementById("inputVolume").value;
+                        var mols = document.getElementById("inputMols").value;
+                        var constant = 0.08206;
+                        var temp = document.getElementById("inputTemp").value;
+
+                        let emptyFields = 0;
+
+                        if (pressure === ''){
+                            emptyFields ++;}
+                        if (volume === ''){
+                            emptyFields ++;}
+                        if (mols === ''){
+                            emptyFields ++;}
+                        if (temp === ''){
+                            emptyFields ++;}
+                        if (emptyFields != 1){
+                            alert("Please leave only 1 box empty.");}
+                            else {
+                                //Check for Empty Box
+                                if (pressure === '') {
+                                    let pressureCalc = ((mols * constant * temp) / volume).toFixed(2);
+                                    document.querySelector("#inputPressure").value = pressureCalc;}
+                                else if (volume === '') {
+                                    let volCalc = ((mols * constant * temp) / pressure).toFixed(2);
+                                    document.querySelector("#inputVolume").value = volCalc;}
+                                else if (mols === '') {
+                                    let molCalc = ((pressure * volume) / (constant * temp)).toFixed(2);
+                                    document.querySelector("#inputMols").value = molCalc;}
+                                else if (temp === '') {
+                                    let tempCalc = ((pressure * volume) / (constant * mols)).toFixed(2);
+                                    document.querySelector("#inputTemp").value = tempCalc;}}}
+
+                    function clearInputs() {
+                        document.querySelector("#inputPressure").value = '';
+                        document.querySelector("#inputVolume").value = '';
+                        document.querySelector("#inputMols").value = '';
+                        document.querySelector("#inputTemp").value = '';}                      
+                </script>
+        </div>  
+
+    </html>

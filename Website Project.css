@@ -1,0 +1,179 @@
+.navbar {
+  overflow: hidden;
+  background-color: #333;}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;}
+
+.dropdown {
+  float: left;
+  overflow: hidden;}
+
+.dropdown .dropButton {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;}
+
+.navbar a:hover, .dropdown:hover .dropButton {
+  background-color: #ddd;
+  color: black;}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;}
+
+.dropdown-content a:hover {
+  background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {
+  display: block;}
+
+.main {
+  padding: 0px 10px;}
+
+header {
+  padding: 60px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  z-index: 1;
+  width: 100%;}
+
+.topicHeader {
+  text-align: center;
+  background: #818181;
+  padding: 5px;}
+
+.calculationHeader {
+  text-align: center;
+  background: #818181;
+  width: 100%;
+  padding: 5px;}
+
+* {
+  box-sizing: border-box;}
+
+.rowInfo {
+  display: flex;
+  padding-top: 10px;
+  padding-bottom: 10px;}
+
+.rowInfo:after {
+  content: "";
+  display: table;
+  clear: both;}
+
+.column {
+  float: left;
+  padding: 10px;}
+
+.columnLeft {
+  width: 25%;
+  text-align: right;}
+
+.columnMiddle {
+  width: 50%;}
+
+.columnRight {
+  width: 25%;}
+
+.calculateButton {
+  background-color:#4294ff;}
+
+.calculateButton:hover {
+  background-color: #2a85fd;
+  color: white;}
+
+.clearButton {
+  background-color: #b90101;}
+
+.clearButton:hover {
+  background-color: #8f0202;
+  color: white;}
+
+.line {
+  height:15px;
+  background-color: #818181;
+}
+
+.toolTip {
+  position: relative;
+  display: inline-block;
+}
+
+.toolTip .toolTipText {
+  visibility: hidden;
+  min-width: 500px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding-left: 15px;
+  padding-right: 15px;
+  position: absolute;
+  z-index: 1;
+  top: -15%;
+  left: 400%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.toolTip:hover .toolTipText {
+  visibility: visible;
+  opacity: 1;
+}
+
+/*Equation Tool Tips*/
+.equationToolTip {
+  position: relative;
+  display: inline-block;
+  color: rgba(0, 109, 160, 0.788);}
+
+.equationToolTip .equationToolTipText {
+  visibility: hidden;
+  width: 300px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  position: absolute;
+  z-index: 1;
+  top: 0%;
+  left: 0%;
+
+  opacity: 0;
+  transition: opacity 0.3s;}
+
+.equationToolTip:hover .equationToolTipText {
+  visibility: visible;
+  opacity: 1;}
+
+.indicatorText {
+  color: rgba(0, 109, 160, 0.788);
+}

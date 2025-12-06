@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="Website Project.css">
+            <title>Chemistry Equations</title>
+
+        </head>
+        <header>
+            <div class="content" id="title">
+                <h1>Chemistry Resources - GS 497</h1>
+            </div>
+        </header>
+
+        <div class="navbar">
+            <a href="Website Project.html">Home</a>
+            <div class="dropdown">
+                <button class="dropButton">General Chemistry 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Temperature Converter.html">Temperature Converter</a>
+                    <a href="Dilutions.html">Dilutions</a>
+                    <a href="Absorbance.html">Absorbance</a>
+                    <a href="Molarity.html">Molarity</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropButton">Acid-Base 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="pH Conversion.html">pH Conversion</a>
+                </div>
+            </div> 
+            <div class="dropdown">
+                <button class="dropButton">Gas Laws 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Boyle's Law.html">Boyle's Law</a>
+                    <a href="Charle's Law.html">Charle's Law</a>
+                    <a href="Ideal Gas Law.html">Ideal Gas Law</a>
+                </div>
+            </div> 
+            <div class="dropdown">
+                <button class="dropButton">Analytical Chemistry 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Buoyancy Correction.html">Buoyancy Correction</a>
+                    <a href="Percent Error.html">Percent Error</a>
+                </div>
+            </div> 
+        </div>
+
+        <div>
+            <h2 class="calculationHeader" id="absorbanceLabel">Percent Error
+                <div class="toolTip">&#9432;
+                    <span class="toolTipText">Input the Theoretical and Actual Values to calculate the Percent Error.</span>
+                </div>
+            </h2>
+            <div class="calculationContent">
+                    <div class="rowInfo">
+                        <label class="column columnLeft equationToolTip">Theoretical Value (V<sub>t</sub>)
+                            <span class="equationToolTipText">
+                                <p>The value obtained.</p>
+                            </span>
+                        </label>
+                        <input class="column columnMiddle" id="inputTheoreticalValue" type="number" placeholder="0">
+                        <label class="column columnRight"></label>
+                    </div>
+                    <div class="rowInfo">
+                        <label class="column columnLeft equationToolTip">Actual Value (V<sub>a</sub>)
+                            <span class="equationToolTipText">
+                                <p>The true value of the value obtained.</p>
+                            </span>
+                        </label>
+                        <input class="column columnMiddle" id="inputActualValue" type="number" placeholder="0">
+                        <label class="column columnRight"></label>
+                    </div>           
+                <div class="rowInfo">
+                    <label class="column columnLeft"></label>
+                    <button class="calculateButton column columnMiddle"onclick="percentErrorCalculation()">Calculate</button>
+                </div>
+                <div class="rowInfo">    
+                    <label class="column columnLeft equationToolTip">Percent Error
+                            <span class="equationToolTipText">
+                                <p>Percent Error = |<sup>(V<sub>a</sub> - V<sub>t</sub>)</sup>/<sub>V<sub>t</sub></sub>| * 100</p>
+                            </span>
+                    </label>
+                    <input type="text" class="column columnMiddle" name="outputPercentError" id="outputPercentError" Size=6 readonly>
+                    <label class="column columnRight">%</label>
+                </div>
+                <div class="rowInfo">
+                    <label class="column columnLeft"></label>
+                    <button class="clearButton column columnMiddle"onclick="clearInputs()">Clear</button>
+                </div>
+            </div>
+                <script>
+                    function percentErrorCalculation() {     
+                        var theoreticalValue = document.getElementById("inputTheoreticalValue").value;
+                        var actualValue = document.getElementById("inputActualValue").value;
+                        var percentError = Math.abs(((theoreticalValue - actualValue) / actualValue) * 100);
+                        document.getElementById("outputPercentError").value=percentError.toFixed(4);}
+
+                    function clearInputs() {
+                        document.querySelector("#inputTheoreticalValue").value = '';
+                        document.querySelector("#inputActualValue").value = '';
+                        document.querySelector("#outputPercentError").value = '';}                        
+                </script>
+        </div>  
+
+    </html>

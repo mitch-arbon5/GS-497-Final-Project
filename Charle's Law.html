@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="Website Project.css">
+            <title>Chemistry Equations</title>
+
+        </head>
+        <header>
+            <div class="content" id="title">
+                <h1>Chemistry Resources - GS 497</h1>
+            </div>
+        </header>
+
+        <div class="navbar">
+            <a href="Website Project.html">Home</a>
+            <div class="dropdown">
+                <button class="dropButton">General Chemistry 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Temperature Converter.html">Temperature Converter</a>
+                    <a href="Dilutions.html">Dilutions</a>
+                    <a href="Absorbance.html">Absorbance</a>
+                    <a href="Molarity.html">Molarity</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropButton">Acid-Base 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="pH Conversion.html">pH Conversion</a>
+                </div>
+            </div> 
+            <div class="dropdown">
+                <button class="dropButton">Gas Laws 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Boyle's Law.html">Boyle's Law</a>
+                    <a href="Charle's Law.html">Charle's Law</a>
+                    <a href="Ideal Gas Law.html">Ideal Gas Law</a>
+                </div>
+            </div> 
+            <div class="dropdown">
+                <button class="dropButton">Analytical Chemistry 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Buoyancy Correction.html">Buoyancy Correction</a>
+                    <a href="Percent Error.html">Percent Error</a>
+                </div>
+            </div> 
+        </div>
+
+        <div>
+            <h2 class="calculationHeader" id="absorbanceLabel">Charle's Law
+                <div class="toolTip">&#9432;
+                    <span class="toolTipText">Fill any three boxes to find the missing variable.</span>
+                </div>
+            </h2>
+            <div class="calculationContent">
+                    <div class="rowInfo">
+                        <label class="column columnLeft equationToolTip">Initial Temperature [T<sub>i</sub>]
+                            <span class="equationToolTipText">
+                                <p>[T<sub>i</sub>] = <sup>[T<sub>f</sub>][V<sub>f</sub>]</sup>/<sub>[V<sub>i</sub>]</sub></p>
+                            </span>
+                        </label>
+                        <input class="column columnMiddle" id="inputInitialTemp" type="number" placeholder="0">
+                        <label class="column columnRight"></label>
+                    </div>
+                    <div class="rowInfo">
+                        <label class="column columnLeft equationToolTip">Inital Volume [V<sub>i</sub>]
+                            <span class="equationToolTipText">
+                                <p>[V<sub>i</sub>] = <sup>[T<sub>f</sub>][V<sub>f</sub>]</sup>/<sub>[T<sub>i</sub>]</sub></p>
+                            </span>
+                        </label>
+                        <input class="column columnMiddle" id="inputInitialVol" type="number" placeholder="0">
+                        <label class="column columnRight"></label>
+                    </div>
+                    <div class="rowInfo">
+                        <label class="column columnLeft equationToolTip">Final Temperature [T<sub>f</sub>]
+                            <span class="equationToolTipText">
+                                <p>[T<sub>f</sub>] = <sup>[T<sub>i</sub>][V<sub>i</sub>]</sup>/<sub>[V<sub>f</sub>]</sub></p>
+                            </span>
+                        </label>                
+                        <input class="column columnMiddle" id="inputFinalTemp" type="number" placeholder="0">
+                        <label class="column columnRight"></label>
+                    </div>
+                    <div class="rowInfo"> 
+                        <label class="column columnLeft equationToolTip">Final Volume [V<sub>f</sub>]
+                            <span class="equationToolTipText">
+                                <p>[V<sub>f</sub>] = <sup>[T<sub>i</sub>][V<sub>i</sub>]</sup>/<sub>[T<sub>f</sub>]</sub></p>
+                            </span>
+                        </label>
+                        <input class="column columnMiddle" id="inputFinalVol" type="number" placeholder="0">
+                        <label class="column columnRight"></label>        
+                    </div>            
+                <div class="rowInfo">
+                    <label class="column columnLeft"></label>
+                    <button class="calculateButton column columnMiddle"onclick="boylesCalculation()">Calculate</button>
+                </div>
+                <div class="rowInfo">
+                    <label class="column columnLeft"></label>
+                    <button class="clearButton column columnMiddle"onclick="clearInputs()">Clear</button>
+                </div>
+            </div>
+                <script>
+                    function boylesCalculation() {   
+                        
+                        // Obtain Input Values
+                        let initialTemp = document.getElementById("inputInitialTemp").value;
+                        let initialVol = document.getElementById("inputInitialVol").value;
+                        let finalTemp = document.getElementById("inputFinalTemp").value;
+                        let finalVol = document.getElementById("inputFinalVol").value;
+
+                        //Check for number of empty boxes
+                        let emptyFields = 0;
+
+                        if (initialTemp === ''){
+                            emptyFields ++;}
+                        if (initialVol === ''){
+                            emptyFields ++;}
+                        if (finalTemp === ''){
+                            emptyFields ++;}
+                        if (finalVol === ''){
+                            emptyFields ++;}
+                        if (emptyFields != 1){
+                            alert("Please leave only 1 box empty.");}
+                            else {
+                                //Check for Empty Box
+                                if (initialTemp === '') {
+                                    let initialTempCalc = ((initialVol * finalTemp) / finalVol).toFixed(2);
+                                    document.querySelector("#inputInitialTemp").value = initialTempCalc;}
+                                else if (initialVol === '') {
+                                    let initialVolCalc = ((finalVol * initialTemp) / finalTemp).toFixed(2);
+                                    document.querySelector("#inputInitialVol").value = initialVolCalc;}
+                                else if (finalTemp === '') {
+                                    let finalTempCalc = ((finalVol * initialTemp) / initialVol).toFixed(2);
+                                    document.querySelector("#inputFinalTemp").value = finalTempCalc;}
+                                else if (finalVol === '') {
+                                    let finalVolCalc = ((initialVol * finalTemp) / initialTemp).toFixed(2);
+                                    document.querySelector("#inputFinalVol").value = finalVolCalc;}}}
+
+                    function clearInputs() {
+                        document.querySelector("#inputInitialTemp").value = '';
+                        document.querySelector("#inputInitialVol").value = '';
+                        document.querySelector("#inputFinalTemp").value = '';
+                        document.querySelector("#inputFinalVol").value = '';}         
+                </script>
+        </div>  
+
+    </html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="Website Project.css">
+            <title>Chemistry Equations</title>
+
+        </head>
+        <header>
+            <div class="content" id="title">
+                <h1>Chemistry Resources - GS 497</h1>
+            </div>
+        </header>
+
+        <div class="navbar">
+            <a href="Website Project.html">Home</a>
+            <div class="dropdown">
+                <button class="dropButton">General Chemistry 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Temperature Converter.html">Temperature Converter</a>
+                    <a href="Dilutions.html">Dilutions</a>
+                    <a href="Absorbance.html">Absorbance</a>
+                    <a href="Molarity.html">Molarity</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropButton">Acid-Base 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="pH Conversion.html">pH Conversion</a>
+                </div>
+            </div> 
+            <div class="dropdown">
+                <button class="dropButton">Gas Laws 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Boyle's Law.html">Boyle's Law</a>
+                    <a href="Charle's Law.html">Charle's Law</a>
+                    <a href="Ideal Gas Law.html">Ideal Gas Law</a>
+                </div>
+            </div> 
+            <div class="dropdown">
+                <button class="dropButton">Analytical Chemistry 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Buoyancy Correction.html">Buoyancy Correction</a>
+                    <a href="Percent Error.html">Percent Error</a>
+                </div>
+            </div> 
+        </div>
+
+        <div>
+            <h2 class="calculationHeader" id="absorbanceLabel">Buoyancy Correction
+                <div class="toolTip">&#9432;
+                    <span class="toolTipText">Input the Recorded Mass, Air Density, Object Density and Weight Density to calculate the Buoyancy Correction.</span>
+                </div>
+            </h2>
+            <div class="calculationContent">
+                    <div class="rowInfo">
+                        <label class="column columnLeft equationToolTip">Recorded Mass (W<sub>i</sub>)
+                            <span class="equationToolTipText">
+                                <p>The initial mass recorded before adjustment.</p>
+                            </span>
+                        </label>
+                        <input class="column columnMiddle" id="inputRecordedMassBuoyancy" type="number" placeholder="0">
+                        <label class="column columnRight">grams</label>
+                    </div>
+                    <div class="rowInfo">
+                        <label class="column columnLeft equationToolTip">Air Density (D<sub>a</sub>)
+                            <span class="equationToolTipText">
+                                <p>This is the density of the air under normal conditions. Usually a value of 0.0012 g/cm<sup>3</sup>.</p>
+                            </span>
+                        </label>
+                        <input class="column columnMiddle" id="inputAirDensity" type="number" placeholder="0">
+                        <label class="column columnRight">g/cm<sup>3</sup></label>
+                    </div>
+                    <div class="rowInfo">     
+                        <label class="column columnLeft equationToolTip">Object Density (D<sub>o</sub>)
+                            <span class="equationToolTipText">
+                                <p>The density of the object being weighed.</p>
+                            </span>
+                        </label>               
+                        <input class="column columnMiddle" id="inputObjectDensity" type="number" placeholder="0">
+                        <label class="column columnRight">g/cm<sup>3</sup></label>
+                    </div>
+                    <div class="rowInfo">
+                        <label class="column columnLeft equationToolTip">Weight Density (D<sub>w</sub>)
+                            <span class="equationToolTipText">
+                                <p>The density of the calibration weights.</p>
+                            </span>
+                        </label> 
+                        <input class="column columnMiddle" id="inputWeightDensity" type="number" placeholder="0">
+                        <label class="column columnRight">g/cm<sup>3</sup></label>        
+                    </div>            
+                    <div class="rowInfo">
+                        <label class="column columnLeft"></label>
+                        <button class="calculateButton column columnMiddle"onclick="buoyancyCalculation()">Calculate</button>
+                    </div>
+                <div class="rowInfo">    
+                    <label class="column columnLeft equationToolTip">Buoyancy Correction (W<sub>a</sub>)
+                            <span class="equationToolTipText">
+                                <p>W<sub>a</sub> = W<sub>i</sub> * [1 + (<sup>1</sup>/<sub>(D<sub>o</sub>)</sub> - <sup>1</sup>/<sub>(D<sub>w</sub>)</sub>) * D<sub>a</sub>]</p>
+                            </span>
+                    </label>
+                    <input type="text" class="column columnMiddle" name="outputBuoyancyCorrection" id="outputBuoyancyCorrection" Size=6 readonly>
+                    <label class="column columnRight">grams</label>
+                </div>
+                <div class="rowInfo">
+                    <label class="column columnLeft"></label>
+                    <button class="clearButton column columnMiddle"onclick="clearInputs()">Clear</button>
+                </div>
+            </div>
+                <script>
+                    function buoyancyCalculation() {     
+
+                        // Obtain Input Values
+                        var inputRecordedMassBuoyancy = document.getElementById("inputRecordedMassBuoyancy").value;
+                        var inputAirDensity = document.getElementById("inputAirDensity").value;
+                        var inputObjectDensity = document.getElementById("inputObjectDensity").value;
+                        var inputWeightDensity = document.getElementById("inputWeightDensity").value;
+
+                        // Perform Calculation
+                        var buoyancyCorrection = inputRecordedMassBuoyancy * (1 + ((1 / inputObjectDensity) - (1 / inputWeightDensity)) * inputAirDensity);
+                        document.getElementById("outputBuoyancyCorrection").value=buoyancyCorrection.toFixed(4);}    
+                        
+                    function clearInputs() {
+                        document.querySelector("#inputRecordedMassBuoyancy").value = '';
+                        document.querySelector("#inputAirDensity").value = '';
+                        document.querySelector("#inputObjectDensity").value = '';
+                        document.querySelector("#inputWeightDensity").value = '';
+                        document.querySelector("#outputBuoyancyCorrection").value = '';}
+                </script>
+        </div>  
+
+    </html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="Website Project.css">
+            <title>Chemistry Equations</title>
+
+        </head>
+        <header>
+            <div class="content" id="title">
+                <h1>Chemistry Resources - GS 497</h1>
+            </div>
+        </header>
+
+        <div class="navbar">
+            <a href="Website Project.html">Home</a>
+            <div class="dropdown">
+                <button class="dropButton">General Chemistry 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Temperature Converter.html">Temperature Converter</a>
+                    <a href="Dilutions.html">Dilutions</a>
+                    <a href="Absorbance.html">Absorbance</a>
+                    <a href="Molarity.html">Molarity</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropButton">Acid-Base 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="pH Conversion.html">pH Conversion</a>
+                </div>
+            </div> 
+            <div class="dropdown">
+                <button class="dropButton">Gas Laws 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Boyle's Law.html">Boyle's Law</a>
+                    <a href="Charle's Law.html">Charle's Law</a>
+                    <a href="Ideal Gas Law.html">Ideal Gas Law</a>
+                </div>
+            </div> 
+            <div class="dropdown">
+                <button class="dropButton">Analytical Chemistry 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Buoyancy Correction.html">Buoyancy Correction</a>
+                    <a href="Percent Error.html">Percent Error</a>
+                </div>
+            </div> 
+        </div>
+
+        <div>
+            <h2 class="calculationHeader" id="absorbanceLabel">Molarity
+                <div class="toolTip">&#9432;
+                    <span class="toolTipText">Input the Mass, Molecular Weight and Volume to calculate the Molarity.</span>
+                </div>
+            </h2>
+            <div class="calculationContent">
+                    <div class="rowInfo">
+                        <label class="column columnLeft">Mass (m)</label>
+                        <input class="column columnMiddle" id="inputMass" type="number" placeholder="0">
+                        <label class="column columnRight">grams</label>
+                    </div>
+                    <div class="rowInfo">
+                        <label class="column columnLeft">Molecular Weight (mw)</label>
+                        <input class="column columnMiddle" id="inputMolecularWeight" type="number" placeholder="0">
+                        <label class="column columnRight">g/mol</label>
+                    </div>
+                    <div class="rowInfo">                    
+                        <label class="column columnLeft">Volume (V)</label>
+                        <input class="column columnMiddle" id="inputVolume" type="number" placeholder="0">
+                        <label class="column columnRight">L</label>
+                    </div>         
+                <div class="rowInfo">
+                    <label class="column columnLeft"></label>
+                    <button class="calculateButton column columnMiddle"onclick="molarityCalculation()">Calculate</button>
+                </div>
+                <div class="rowInfo">    
+                    <label class="column columnLeft equationToolTip">Molarity
+                            <span class="equationToolTipText">
+                                <p>M = <sup>m</sup>/<sub>(mw * V)</sub></p>
+                            </span>
+                        </label>
+                    <input type="text" class="column columnMiddle" name="outputMolarity" id="outputMolarity" Size=6 readonly>
+                    <label class="column columnRight"></label>
+                </div>
+                <div class="rowInfo">
+                    <label class="column columnLeft"></label>
+                    <button class="clearButton column columnMiddle"onclick="clearInputs()">Clear</button>
+                </div>
+            </div>
+                <script>
+                    function molarityCalculation() {     
+                        var mass = document.getElementById("inputMass").value;
+                        var molecularWeight = document.getElementById("inputMolecularWeight").value;
+                        var volume = document.getElementById("inputVolume").value;
+                        var molarity = (mass / (molecularWeight * volume));
+                        document.getElementById("outputMolarity").value=molarity.toFixed(4);}
+                        
+                    function clearInputs() {
+                        document.querySelector("#inputMass").value = '';
+                        document.querySelector("#inputMolecularWeight").value = '';
+                        document.querySelector("#inputVolume").value = '';
+                        document.querySelector("#outputMolarity").value = '';}
+                </script>
+        </div>  
+    </html>

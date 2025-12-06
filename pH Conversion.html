@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="Website Project.css">
+            <title>Chemistry Equations</title>
+
+        </head>
+        <header>
+            <div class="content" id="title">
+                <h1>Chemistry Resources - GS 497</h1>
+            </div>
+        </header>
+
+        <div class="navbar">
+            <a href="Website Project.html">Home</a>
+            <div class="dropdown">
+                <button class="dropButton">General Chemistry 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Temperature Converter.html">Temperature Converter</a>
+                    <a href="Dilutions.html">Dilutions</a>
+                    <a href="Absorbance.html">Absorbance</a>
+                    <a href="Molarity.html">Molarity</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropButton">Acid-Base 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="pH Conversion.html">pH Conversion</a>
+                </div>
+            </div> 
+            <div class="dropdown">
+                <button class="dropButton">Gas Laws 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Boyle's Law.html">Boyle's Law</a>
+                    <a href="Charle's Law.html">Charle's Law</a>
+                    <a href="Ideal Gas Law.html">Ideal Gas Law</a>
+                </div>
+            </div> 
+            <div class="dropdown">
+                <button class="dropButton">Analytical Chemistry 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Buoyancy Correction.html">Buoyancy Correction</a>
+                    <a href="Percent Error.html">Percent Error</a>
+                </div>
+            </div> 
+        </div>
+
+        <div>
+            <h2 class="calculationHeader" id="absorbanceLabel">pH Conversion
+                <div class="toolTip">&#9432;
+                    <span class="toolTipText">Fill any three boxes to find the missing variable.</span>
+                </div>
+            </h2>
+            <div class="calculationContent">
+                    <div class="rowInfo">
+                        <label class="column columnLeft equationToolTip">pH
+                            <span class="equationToolTipText">
+                                <p>pH = 14 - pOH</p>
+                                <p>pH = -log[H]</p>
+                                <p>pH = 14 - (-log[OH])</p>
+                            </span>
+                        </label>
+                        <input class="column columnMiddle" id="inputpH" type="number" placeholder="0">
+                        <label class="column columnRight"></label>
+                    </div>
+                    <div class="rowInfo">
+
+                        <label class="column columnLeft equationToolTip">pOH
+                            <span class="equationToolTipText">
+                                <p>pOH = 14 - pH</p>
+                                <p>pOH = 14 - (-log[H])</p>
+                                <p>pOH = -log[OH]</p>
+                            </span>
+                        </label>
+                        <input class="column columnMiddle" id="inputpOH" type="number" placeholder="0">
+                        <label class="column columnRight"></label>
+                    </div>
+                    <div class="rowInfo">                    
+
+                        <label class="column columnLeft equationToolTip">Hydrogen Ion Concentration [H]
+                            <span class="equationToolTipText">
+                                <p>[H] = 10<sup>-pH</sup></p>
+                                <p>[H] = 10<sup>-pOH</sup></p>
+                                <p>[H] = 1*10<sup>-14</sup>/<sub>[OH]</sub></p>
+                            </span>
+                        </label>
+                        <input class="column columnMiddle" id="inputHydrogen" type="number" placeholder="0">
+                        <label class="column columnRight">M</label>
+                    </div>
+                    <div class="rowInfo"> 
+                        <label class="column columnLeft equationToolTip">Hydroxide Ion Concentration [OH]
+                            <span class="equationToolTipText">
+                                <p>[OH] = 10<sup>-(14 - pH)</sup></p>
+                                <p>[OH] = 10<sup>14 - pOH</sup></p>
+                                <p>[OH] = 1*10<sup>-14</sup>/<sub>[H]</sub></p>
+                            </span>
+                        </label>
+                        <input class="column columnMiddle" id="inputHydroxide" type="number" placeholder="0">
+                        <label class="column columnRight">M</label>        
+                    </div>            
+                <div class="rowInfo">
+                    <label class="column columnLeft"></label>
+                    <button class="calculateButton column columnMiddle"onclick="pHCalculation()">Calculate</button>
+                </div>
+                <div class="rowInfo">
+                    <label class="column columnLeft"></label>
+                    <button class="clearButton column columnMiddle"onclick="clearInputs()">Clear</button>
+                </div>
+            </div>
+                <script>
+                    function pHCalculation() {   
+                        
+                        // Obtain Input Values
+                        let pH = document.getElementById("inputpH").value;
+                        let pOH = document.getElementById("inputpOH").value;
+                        let Hydrogen = document.getElementById("inputHydrogen").value;
+                        let Hydroxide = document.getElementById("inputHydroxide").value;
+
+                        //Check for number of empty boxes
+                        let emptyFields = 0;
+
+                        if (pH === ''){
+                            emptyFields ++;}
+                        if (pOH === ''){
+                            emptyFields ++;}
+                        if (Hydrogen === ''){
+                            emptyFields ++;}
+                        if (Hydroxide === ''){
+                            emptyFields ++;}
+
+                        if (emptyFields != 3){
+                            alert("Please only fill 1 box.");}
+                            else {
+                                //Check for Empty Box
+                                if (pH !== '') {
+                                    let pOH = (14 - pH);
+                                    let Hydrogen = (10 ** -(pH)).toExponential(2);
+                                    let Hydroxide = (10 ** -(14 - pH)).toExponential(2);
+                                    document.querySelector("#inputpOH").value = pOH;
+                                    document.querySelector("#inputHydrogen").value = Hydrogen;
+                                    document.querySelector("#inputHydroxide").value = Hydroxide;}
+                                else if (pOH !== '') {
+                                    let pH = (14 - pOH).toFixed(2);
+                                    let Hydrogen = (10 ** (-pOH)).toExponential(2);
+                                    let Hydroxide = (10 ** (14 - pOH)).toExponential(2);
+                                    document.querySelector("#inputpH").value = pH;
+                                    document.querySelector("#inputHydrogen").value = Hydrogen;
+                                    document.querySelector("#inputHydroxide").value = Hydroxide;}
+                                else if (Hydrogen !== '') {
+                                    let pH = (-Math.log(Hydrogen));
+                                    let pOH = (14 - (-Math.log(Hydrogen)));
+                                    let Hydroxide = ((1 * (10 ** -14)) / Hydrogen).toExponential(2);
+                                    document.querySelector("#inputpH").value = pH;
+                                    document.querySelector("#inputpOH").value = pOH;
+                                    document.querySelector("#inputHydroxide").value = Hydrogen;}
+                                else if (Hydroxide !== '') {
+                                    let pH = (14 - (-Math.log(Hydroxide)));
+                                    let pOH = (-Math.log(Hydroxide));
+                                    let Hydrogen = ((1 * (10 ** -14)) / Hydroxide).toExponential(2);
+                                    document.querySelector("#inputpH").value = pH;
+                                    document.querySelector("#inputpOH").value = pOH;
+                                    document.querySelector("#inputHydrogen").value = Hydrogen;}}}
+
+                    function clearInputs() {
+                        document.querySelector("#inputpH").value = '';
+                        document.querySelector("#inputpOH").value = '';
+                        document.querySelector("#inputHydrogen").value = '';
+                        document.querySelector("#inputHydroxide").value = '';}
+                </script>
+        </div>  
+
+    </html>

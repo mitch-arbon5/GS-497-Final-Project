@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="Website Project.css">
+            <title>Chemistry Equations</title>
+
+        </head>
+        <header>
+            <div class="content" id="title">
+                <h1>Chemistry Resources - GS 497</h1>
+            </div>
+        </header>
+
+        <div class="navbar">
+            <a href="Website Project.html">Home</a>
+            <div class="dropdown">
+                <button class="dropButton">General Chemistry 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Temperature Converter.html">Temperature Converter</a>
+                    <a href="Dilutions.html">Dilutions</a>
+                    <a href="Absorbance.html">Absorbance</a>
+                    <a href="Molarity.html">Molarity</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropButton">Acid-Base 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="pH Conversion.html">pH Conversion</a>
+                </div>
+            </div> 
+            <div class="dropdown">
+                <button class="dropButton">Gas Laws 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Boyle's Law.html">Boyle's Law</a>
+                    <a href="Charle's Law.html">Charle's Law</a>
+                    <a href="Ideal Gas Law.html">Ideal Gas Law</a>
+                </div>
+            </div> 
+            <div class="dropdown">
+                <button class="dropButton">Analytical Chemistry 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Buoyancy Correction.html">Buoyancy Correction</a>
+                    <a href="Percent Error.html">Percent Error</a>
+                </div>
+            </div> 
+        </div>
+
+        <div>
+            <h2 class="calculationHeader" id="absorbanceLabel">Boyle's Law
+                <div class="toolTip">&#9432;
+                    <span class="toolTipText">Fill any three boxes to find the missing variable.</span>
+                </div>
+            </h2>
+            <div class="calculationContent">
+                    <div class="rowInfo">
+                        <label class="column columnLeft equationToolTip">Initial Pressure [P<sub>i</sub>]
+                            <span class="equationToolTipText">
+                                <p>[P<sub>i</sub>] = <sup>[P<sub>f</sub>][V<sub>f</sub>]</sup>/<sub>[V<sub>i</sub>]</sub></p>
+                            </span>
+                        </label>
+                        <input class="column columnMiddle" id="inputInitalPressure" type="number" placeholder="0">
+                        <label class="column columnRight"></label>
+                    </div>
+                    <div class="rowInfo">
+                        <label class="column columnLeft equationToolTip">Inital Volume [V<sub>i</sub>]
+                            <span class="equationToolTipText">
+                                <p>[V<sub>i</sub>] = <sup>[P<sub>f</sub>][V<sub>f</sub>]</sup>/<sub>[P<sub>i</sub>]</sub></p>
+                            </span>
+                        </label>
+                        <input class="column columnMiddle" id="inputInitialVolume" type="number" placeholder="0">
+                        <label class="column columnRight"></label>
+                    </div>
+                    <div class="rowInfo">
+                        <label class="column columnLeft equationToolTip">Final Pressure [P<sub>f</sub>]
+                            <span class="equationToolTipText">
+                                <p>[P<sub>f</sub>] = <sup>[P<sub>i</sub>][V<sub>i</sub>]</sup>/<sub>[V<sub>f</sub>]</sub></p>
+                            </span>
+                        </label>                    
+                        <input class="column columnMiddle" id="inputFinalPressure" type="number" placeholder="0">
+                        <label class="column columnRight"></label>
+                    </div>
+                    <div class="rowInfo"> 
+                        <label class="column columnLeft equationToolTip">Final Volume [V<sub>f</sub>]
+                            <span class="equationToolTipText">
+                                <p>[V<sub>f</sub>] = <sup>[P<sub>i</sub>][V<sub>i</sub>]</sup>/<sub>[P<sub>f</sub>]</sub></p>
+                            </span>
+                        </label>
+                        <input class="column columnMiddle" id="inputFinalVolume" type="number" placeholder="0">
+                        <label class="column columnRight"></label>        
+                    </div>            
+                <div class="rowInfo">
+                    <label class="column columnLeft"></label>
+                    <button class="calculateButton column columnMiddle"onclick="boylesCalculation()">Calculate</button>
+                </div>
+                <div class="rowInfo">
+                    <label class="column columnLeft"></label>
+                    <button class="clearButton column columnMiddle"onclick="clearInputs()">Clear</button>
+                </div>
+            </div>
+                <script>
+                    function boylesCalculation() {   
+                        
+                        // Obtain Input Values
+                        let initialPressure = document.getElementById("inputInitalPressure").value;
+                        let initialVol = document.getElementById("inputInitialVolume").value;
+                        let finalPressure = document.getElementById("inputFinalPressure").value;
+                        let finalVol = document.getElementById("inputFinalVolume").value;
+
+                        //Check for number of empty boxes
+                        let emptyFields = 0;
+
+                        if (initialPressure === ''){
+                            emptyFields ++;}
+                        if (initialVol === ''){
+                            emptyFields ++;}
+                        if (finalPressure === ''){
+                            emptyFields ++;}
+                        if (finalVol === ''){
+                            emptyFields ++;}
+                        if (emptyFields != 1){
+                            alert("Please leave only 1 box empty.");}
+                            else {
+                                //Check for Empty Box
+                                if (initialPressure === '') {
+                                    let initialPressureCalc = ((finalPressure * finalVol) / initialVol).toFixed(2);
+                                    document.querySelector("#inputInitalPressure").value = initialPressureCalc;}
+                                else if (initialVol === '') {
+                                    let initialVolCalc = ((finalPressure * finalVol) / initialPressure).toFixed(2);
+                                    document.querySelector("#inputInitialVolume").value = initialVolCalc;}
+                                else if (finalPressure === '') {
+                                    let finalPressureCalc = ((initialPressure *initialVol) / finalVol).toFixed(2);
+                                    document.querySelector("#inputFinalPressure").value = finalPressureCalc;}
+                                else if (finalVol === '') {
+                                    let finalVolCalc = ((initialPressure *initialVol) / finalPressure).toFixed(2);
+                                    document.querySelector("#inputFinalVolume").value = finalVolCalc;}}}
+
+                    function clearInputs() {
+                        document.querySelector("#inputInitalPressure").value = '';
+                        document.querySelector("#inputInitialVolume").value = '';
+                        document.querySelector("#inputFinalPressure").value = '';
+                        document.querySelector("#inputFinalVolume").value = '';}         
+                </script>
+        </div>  
+
+    </html>
